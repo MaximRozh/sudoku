@@ -29,6 +29,9 @@ function App() {
     const message = checkValid(sudokuArray);
     message && alert(message);
   };
+  const clearBoard = () => {
+    setSudokuArray(initialArray);
+  };
   return (
     <div className="App">
       <table>
@@ -52,9 +55,12 @@ function App() {
           ))}
         </tbody>
       </table>
-      <div className="buttonsContainer">
-        <button className="Check" onClick={solveSudoku}>
+      <div className="buttons-container">
+        <button className="check-button" onClick={solveSudoku}>
           Check answers
+        </button>
+        <button className="clear-button" onClick={clearBoard}>
+          Clear
         </button>
       </div>
     </div>

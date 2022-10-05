@@ -25,17 +25,27 @@ table {
 td {
   padding: 0;
 }
-.buttonsContainer {
+.buttons-container {
   margin-top: 30px;
-  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
-.Check {
+.buttons-container button {
+  cursor: pointer;
   font-size: 20px;
-  background-color: #3cb371;
   padding: 15px;
   border: none;
   border-radius: 20px;
   text-align: center;
+}
+
+.check-button {
+  background-color: #3cb371;
+}
+.clear-button {
+  background-color: #ff7f50;
 }
 
 .borderRow {
