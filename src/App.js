@@ -16,6 +16,7 @@ const initialArray = [
 
 function App() {
   const [sudokuArray, setSudokuArray] = useState(initialArray);
+  const [checkResult, setCheckResult] = useState("");
 
   const onChangeHandler = (e, row, col) => {
     const value = Number(e.target.value) || null;
@@ -23,31 +24,37 @@ function App() {
     deepCopy[row][col] = value;
 
     setSudokuArray(deepCopy);
+    setCheckResult("");
   };
 
   const solveSudoku = () => {
-    const message = checkValid(sudokuArray);
-    message && alert(message);
+    const result = checkValid(sudokuArray);
+    setCheckResult(result);
   };
+
   const clearBoard = () => {
     setSudokuArray(initialArray);
   };
+
   return (
     <div className="App">
       <table>
         <tbody>
-          {Array.from(new Array(9)).map((_, row) => (
-            <tr key={row} className={row % 3 === 0 ? "borderRow" : ""}>
-              {Array.from(new Array(9)).map((_, col) => (
-                <td key={col + 1} className={col % 3 === 0 ? "borderCol" : ""}>
+          {sudokuArray.map((row, rowI) => (
+            <tr key={rowI} className={rowI % 3 === 0 ? "borderRow" : ""}>
+              {row.map((col, colI) => (
+                <td
+                  key={colI + 1}
+                  className={colI % 3 === 0 ? "borderCol" : ""}
+                >
                   <input
                     type="text"
                     pattern="[1-9]"
                     maxLength="1"
-                    value={sudokuArray[row][col] || ""}
-                    onChange={(e) => onChangeHandler(e, row, col)}
+                    value={col || ""}
+                    onChange={(e) => onChangeHandler(e, rowI, colI)}
                     className="input"
-                    disabled={initialArray[row][col]}
+                    disabled={initialArray[rowI][colI]}
                   />
                 </td>
               ))}
@@ -55,6 +62,15 @@ function App() {
           ))}
         </tbody>
       </table>
+      {checkResult ? (
+        <div
+          className={`messages ${
+            checkResult === "complited" ? "complited" : "error"
+          }`}
+        >
+          {checkResult}
+        </div>
+      ) : null}
       <div className="buttons-container">
         <button className="check-button" onClick={solveSudoku}>
           Check answers

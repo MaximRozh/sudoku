@@ -57,4 +57,6 @@ export const checkValid = (sudoku) => {
   if (isBoardFilled(sudoku)) {
     return "complited";
   }
+
+  return null;
 };

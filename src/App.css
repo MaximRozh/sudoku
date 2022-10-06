@@ -54,3 +54,17 @@ td {
 .borderCol {
   border-left: 2px solid;
 }
+
+.messages {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px;
+}
+
+.complited {
+  color: #3cb371;
+}
+.error {
+  color: crimson;
+}
