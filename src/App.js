@@ -65,7 +65,7 @@ function App() {
       {checkResult ? (
         <div
           className={`messages ${
-            checkResult === "complited" ? "complited" : "error"
+            checkResult === "completed" ? "completed" : "error"
           }`}
         >
           {checkResult}
