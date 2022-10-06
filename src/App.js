@@ -7,17 +7,17 @@ function App() {
   const [sudokuArray, setSudokuArray] = useState(initialArray);
   const [checkResult, setCheckResult] = useState("");
 
-  const onChangeHandler = useCallback(
-    (e, row, col) => {
-      const value = Number(e.target.value) || null;
-      const deepCopy = JSON.parse(JSON.stringify(sudokuArray));
-      deepCopy[row][col] = value;
+  const onChangeHandler = useCallback((e, row, col) => {
+    const value = Number(e.target.value) || null;
 
-      setSudokuArray(deepCopy);
-      setCheckResult("");
-    },
-    [sudokuArray]
-  );
+    setSudokuArray((prev) => {
+      const deepCopy = JSON.parse(JSON.stringify(prev));
+      deepCopy[row][col] = value;
+      return deepCopy;
+    });
+
+    setCheckResult("");
+  }, []);
 
   const solveSudoku = () => {
     const result = checkValid(sudokuArray);
