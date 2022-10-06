@@ -55,7 +55,7 @@ export const checkValid = (sudoku) => {
     return "one of the nine 3x3 subgrids that compose the grid contains duplicate numbers";
   }
   if (isBoardFilled(sudoku)) {
-    return "complited";
+    return "Completed";
   }
 
   return null;
